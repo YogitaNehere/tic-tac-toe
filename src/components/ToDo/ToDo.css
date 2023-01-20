@@ -1,0 +1,9 @@
+body{
+    margin: 0;
+    background-color: #FFFDD0;
+}
+
+col{
+    display: flex;
+    float: left;
+}

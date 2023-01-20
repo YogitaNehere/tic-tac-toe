@@ -47,6 +47,7 @@ const Board = () => {
             const [a,b,c] = lines[i];
 
             if(squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
+                alert(`Congratulations!!! ${squares[a]} are winner...`)
                 return squares[a];
             }
         }

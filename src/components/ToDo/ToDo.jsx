@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Add from "./Add";
+import "./ToDo.css";
 
 const ToDo = () => {
     const [state, setState] = useState({
@@ -13,9 +15,11 @@ const ToDo = () => {
     const addToDo = () => {
         console.log('Add todo clicked..');
         let todoTitle = state.todoTitle;
-
-        setState({...state, todoList: [...todoList, todoTitle], count: state.count+1});
-        state.todoTitle = "";
+        console.log(todoTitle)
+        if(todoTitle !== '' && typeof todoTitle !== 'undefined'){
+            setState({...state, todoList: [...todoList, todoTitle], count: state.count+1});
+            state.todoTitle = "";
+        }
     }
 
     const todoList = state.todoList;
@@ -23,17 +27,20 @@ const ToDo = () => {
     return(
         <div>
             <h1>To Do List</h1>
-            <div className="row">
-                
+            <div className="todoList">
+                {
+                    todoList.map((todo, index) => {
+                        return (<Add todo={todo} key={index}/>)
+                    })
+                }
             </div>
-            {
-                todoList.map((todo, index) => {
-                    return (<p key={index}>{todo}</p>)
-                })
-            }
-            <input type="text" id="todoTitle" onChange={onInputChange}/>
-            <button onClick={addToDo}>Add ToDo </button>
-            <p>Count: {state.count}</p>
+            <div className="row">
+            
+                <input type="text" id="todoTitle" onChange={onInputChange}/>
+                <button onClick={addToDo}>Add ToDo {state.count} </button>
+                <p>Count: {state.count}</p>
+
+            </div>
         </div>
     );
 }
